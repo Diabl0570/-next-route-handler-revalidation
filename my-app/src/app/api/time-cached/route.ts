@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { unstable_cache } from "next/cache";
-import { getTime } from "../time/route";
+import { getTime } from "@/app/services/getTime";
 
 const getTimeCached = unstable_cache(getTime, ["time-tag"], {
   revalidate: 5,
