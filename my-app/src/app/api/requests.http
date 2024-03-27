@@ -9,5 +9,11 @@
 GET {{hostname}}/api/time HTTP/1.1
 Content-Type: {{contentType}}
 ###
+GET {{hostname}}/api/time/revalidate HTTP/1.1
+Content-Type: {{contentType}}
+###
 GET {{hostname}}/api/time-cached HTTP/1.1
+Content-Type: {{contentType}}
+###
+GET {{hostname}}/api/time-cached/revalidate HTTP/1.1
 Content-Type: {{contentType}}

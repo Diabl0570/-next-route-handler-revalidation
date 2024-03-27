@@ -10,7 +10,7 @@ export async function GET(request: NextRequest) {
 
   return NextResponse.json(data, {
     headers: {
-      "Cache-Control": "public, s-maxage=10",
+      "Cache-Control": "public, s-maxage=60",
       // "CDN-Cache-Control": "public, s-maxage=3600",
       // "Vercel-CDN-Cache-Control": "public, s-maxage=3600",
     },
