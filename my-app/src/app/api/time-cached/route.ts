@@ -1,17 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { unstable_cache } from "next/cache";
+import { getTime } from "../time/route";
 
-export const getTime = async () => {
-  const time = await fetch("https://worldtimeapi.org/api/ip", {
-    next: { revalidate: 2 },
-  });
-  return time.json();
-};
-
-
+const getTimeCached = unstable_cache(getTime, ["time-tag"], {
+  revalidate: 5,
+});
 
 export async function GET(request: NextRequest) {
-  const data = await getTime();
+  const data = await getTimeCached();
 
   if (!data) {
     return NextResponse.json([]);
