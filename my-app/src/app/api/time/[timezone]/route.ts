@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getTime, getTimeZone } from "@/app/services/getTime";
 export const generateStaticParams = async () => {
   const countries = ["CET","EET","EST"];
-  return countries.map((timezone) => [{ params: { timezone } }]);
+  return countries.map((timezone) => ({ params: { timezone } }));
 };
 
 export async function GET(request: NextRequest, { timezone }: { timezone: string }) {
