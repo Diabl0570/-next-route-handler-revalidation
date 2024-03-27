@@ -1,9 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 const getTime = async () => {
-  const time = await fetch("https://worldtimeapi.org/api/ip", {
-    next: { revalidate: 1 },
-  });
+  const time = await fetch("https://worldtimeapi.org/api/ip");
   return time.json();
 };
 
