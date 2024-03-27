@@ -1,11 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
+import { unstable_cache } from "next/cache";
 
-const getTime = async () => {
-  const time = await fetch("https://worldtimeapi.org/api/ip", {
-    next: { revalidate: 2 },
-  });
-  return time.json();
-};
+const getTime = unstable_cache(() =>{
+  async () => {
+    const time = await fetch("https://worldtimeapi.org/api/ip", {
+      next: { revalidate: 2 },
+    });
+    return time.json();
+  }
+}, ["time-tag",{
+  revalidate: 5
+}]);
 
 export async function GET(request: NextRequest) {
   const data = await getTime();
@@ -16,7 +21,7 @@ export async function GET(request: NextRequest) {
 
   return NextResponse.json(data, {
     headers: {
-      "Cache-Control": "public, s-maxage=5",
+      "Cache-Control": "public, s-maxage=10",
       // "CDN-Cache-Control": "public, s-maxage=3600",
       // "Vercel-CDN-Cache-Control": "public, s-maxage=3600",
     },
