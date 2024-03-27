@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 const getTime = async () => {
   const time = await fetch("https://worldtimeapi.org/api/ip", {
-    next: { revalidate: 4 },
+    next: { revalidate: 2 },
   });
   return time.json();
 };
