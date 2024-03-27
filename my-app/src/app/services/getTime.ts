@@ -11,7 +11,6 @@ export const getTime = async () => {
 
   
   export const getTimeZone = async (country:string) => {
-    await delay(5000);
     const time = await fetch(`https://worldtimeapi.org/api/ip`, {
       next: { tags: ["time-tag"], revalidate: 10 },
     });
